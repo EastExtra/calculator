@@ -1,38 +1,180 @@
-.App {
-  text-align: center;
+:root {
+  --background: #f4f4f4;
+  --calculator-bg: #f4f4f4;
+  --box-shadow: 0 0 10px #ccc;
+  --display-bg: #fff;
+  --display-border: #ddd;
+  --display-color: #222;
+  --button-bg: #fff;
+  --button-hover-bg: #e0e0e0;
+  --button-color: #222;
+  --reset-bg: #ca9ee6;
+  --reset-color: #fff;
+  --toggle-bg: #e0e0e0;
+  --toggle-color: #222;
 }
 
-.App-logo {
-  height: 40vmin;
+body[data-theme="dark"] {
+  --background: #181825;
+  --calculator-bg: #232634;
+  --box-shadow: 0 0 20px #111;
+  --display-bg: #232634;
+  --display-border: #444;
+  --display-color: #f4f4f4;
+  --button-bg: #2a2d3a;
+  --button-hover-bg: #353849;
+  --button-color: #f4f4f4;
+  --reset-bg: #a6adc8;
+  --reset-color: #232634;
+  --toggle-bg: #353849;
+  --toggle-color: #f4f4f4;
+}
+
+body {
+  background: var(--background);
+  color: var(--button-color);
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.calculator {
+  background: var(--calculator-bg);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  min-width: 320px;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.display {
+  width: 100%;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-align: right;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--display-border);
+  background: var(--display-bg);
+  color: var(--display-color);
+  box-sizing: border-box;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+.buttonBox {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  padding: 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  background: var(--button-bg);
+  color: var(--button-color);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+}
+
+button:hover {
+  background: var(--button-hover-bg);
+}
+
+.reset {
+  background: var(--reset-bg);
+  color: var(--reset-color);
+}
+
+.theme-toggle {
+  margin-bottom: 15px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: none;
+  background: var(--toggle-bg);
+  color: var(--toggle-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  float: right;
+}
+.theme-toggle:hover {
+  background: var(--reset-bg);
+  color: var(--reset-color);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 20px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.mode-selector button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background: var(--button-bg);
+  color: var(--button-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.mode-selector button.active {
+  background: var(--reset-bg);
+  color: var(--reset-color);
+  font-weight: bold;
+  box-shadow: 0 0 4px var(--reset-bg);
+}
+
+.history-toggle {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background: var(--button-bg);
+  color: var(--button-color);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.history-toggle:hover {
+  background: var(--reset-bg);
+  color: var(--reset-color);
+  font-weight: bold;
+  box-shadow: 0 0 4px var(--reset-bg);
+}
+
+.history-tab {
+  background: var(--calculator-bg);
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 16px;
+  box-shadow: var(--box-shadow);
+  max-width: 400px;
+  width: 100px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.history-tab.open {
+  max-height: 500px; 
+  opacity: 1; 
+  pointer-events: auto;
 }
